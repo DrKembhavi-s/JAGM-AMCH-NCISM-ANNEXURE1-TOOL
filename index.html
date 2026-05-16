@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>NCISM Annexure-I</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;font-size:13px;background:#f5f5f5;color:#222}
+.app{display:flex;height:100vh;overflow:hidden}
+.sidebar{width:240px;background:#fff;border-right:1px solid #ddd;display:flex;flex-direction:column;flex-shrink:0}
+.sidebar-header{padding:12px;border-bottom:1px solid #eee;background:#1a3a5c;color:#fff}
+.sidebar-header h2{font-size:13px;font-weight:600}
+.sidebar-header p{font-size:11px;opacity:0.8;margin-top:2px}
+.teacher-list{flex:1;overflow-y:auto;padding:8px}
+.teacher-item{padding:8px 10px;border-radius:6px;cursor:pointer;margin-bottom:4px;border:1px solid transparent;display:flex;align-items:center;justify-content:space-between}
+.teacher-item:hover{background:#f0f4f8}
+.teacher-item.active{background:#e8f0fb;border-color:#3a7bd5}
+.teacher-item .t-name{font-size:12px;font-weight:600;color:#1a3a5c}
+.teacher-item .t-code{font-size:11px;color:#666}
+.teacher-item .del-btn{background:none;border:none;color:#c00;cursor:pointer;font-size:14px;padding:0 2px;display:none}
+.teacher-item:hover .del-btn{display:block}
+.sidebar-btns{padding:8px;display:flex;flex-direction:column;gap:6px;border-top:1px solid #eee}
+.add-btn{padding:8px;background:#1a3a5c;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600}
+.add-btn:hover{background:#2a5a8c}
+.import-btn{padding:8px;background:#1a6a1a;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;text-align:center}
+.import-btn:hover{background:#155a15}
+.main{flex:1;overflow-y:auto;padding:16px;background:#f5f5f5}
+.form-card{background:#fff;border-radius:8px;border:1px solid #ddd;padding:16px;margin-bottom:16px}
+.form-card h3{font-size:13px;font-weight:700;color:#1a3a5c;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #e8f0fb}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.field{display:flex;flex-direction:column;gap:3px}
+.field label{font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:0.3px}
+.field input,.field select,.field textarea{border:1px solid #ccc;border-radius:4px;padding:6px 8px;font-size:12px;font-family:Arial;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:#3a7bd5}
+.field textarea{min-height:60px}
+.exp-table{width:100%;border-collapse:collapse;margin-bottom:8px}
+.exp-table th{background:#1a3a5c;color:#fff;padding:6px 8px;font-size:11px;text-align:left;font-weight:600}
+.exp-table td{padding:4px;border-bottom:1px solid #eee}
+.exp-table td input,.exp-table td select{width:100%;border:1px solid #ccc;border-radius:3px;padding:4px 6px;font-size:11px}
+.exp-table .rm-btn{background:none;border:none;color:#c00;cursor:pointer;font-size:14px}
+.add-exp-btn{font-size:11px;padding:4px 10px;background:#e8f0fb;color:#1a3a5c;border:1px solid #3a7bd5;border-radius:4px;cursor:pointer}
+.photo-box{width:100px;height:120px;border:1px dashed #999;border-radius:4px;display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;background:#f9f9f9}
+.photo-box img{width:100%;height:100%;object-fit:cover}
+.photo-box span{font-size:10px;color:#999;text-align:center;padding:4px}
+.action-bar{display:flex;gap:8px;padding:12px;background:#fff;border-top:1px solid #eee;position:sticky;bottom:0;flex-wrap:wrap}
+.btn-print{padding:8px 16px;background:#1a6a1a;color:#fff;border:none;border-radius:5px;cursor:pointer;font-size:12px;font-weight:600}
+.btn-print:hover{background:#155a15}
+.btn-all{padding:8px 16px;background:#7a4a00;color:#fff;border:none;border-radius:5px;cursor:pointer;font-size:12px;font-weight:600}
+.count-badge{background:#3a7bd5;color:#fff;font-size:10px;padding:1px 6px;border-radius:10px;margin-left:6px}
+.drop-zone{border:2px dashed #3a7bd5;border-radius:8px;padding:24px;text-align:center;background:#f0f6ff;cursor:pointer;margin-bottom:16px;transition:background 0.2s}
+.drop-zone:hover,.drop-zone.drag-over{background:#ddeeff}
+.drop-zone p{font-size:13px;color:#1a3a5c;font-weight:600;margin-bottom:4px}
+.drop-zone span{font-size:11px;color:#666}
+.toast{position:fixed;bottom:20px;right:20px;background:#1a3a5c;color:#fff;padding:10px 16px;border-radius:6px;font-size:12px;z-index:999;display:none}
+.import-summary{background:#e8f0fb;border:1px solid #3a7bd5;border-radius:6px;padding:10px 14px;margin-bottom:12px;font-size:12px;color:#1a3a5c}
+
+@media print{
+  .app,.sidebar,.main,.action-bar{all:unset;display:block}
+  body{background:#fff;margin:0;padding:0}
+  .no-print{display:none!important}
+}
+.print-wrap{font-family:Arial,sans-serif;font-size:10pt;display:none}
+@media print{.print-wrap{display:block}}
+
+.p-title{text-align:center;font-size:13pt;font-weight:700;margin-bottom:8px;text-decoration:underline}
+.p-inst{text-align:center;font-size:10pt;margin-bottom:12px;font-weight:600}
+.p-table{width:100%;border-collapse:collapse;table-layout:fixed}
+.p-table th,.p-table td{border:1px solid #000;padding:4px 5px;font-size:8.5pt;vertical-align:top;word-break:break-word}
+.p-table th{background:#d0d8e8;font-weight:700;text-align:center;font-size:8pt}
+.exp-sub{width:100%;border-collapse:collapse;font-size:8pt}
+.exp-sub th{background:#eee;font-weight:700;text-align:left;padding:2px 3px;border-bottom:1px solid #999}
+.exp-sub td{padding:2px 3px;border-bottom:1px solid #ddd}
+.sig-box{border:1px solid #999;height:40px;margin-top:4px;font-size:7pt;color:#aaa;text-align:center;padding-top:14px}
+.photo-print{width:80px;height:95px;border:1px solid #999;object-fit:cover;display:block;margin:0 auto}
+.photo-placeholder{width:80px;height:95px;border:1px dashed #999;display:flex;align-items:center;justify-content:center;font-size:7pt;color:#aaa;margin:0 auto;text-align:center;line-height:1.3}
+</style>
+</head>
+<body>
+
+<div class="app no-print">
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <h2>NCISM Annexure-I</h2>
+      <p id="teacherCount">No teachers loaded</p>
+    </div>
+    <div class="teacher-list" id="teacherList">
+      <div class="empty-state" style="text-align:center;padding:30px 10px;color:#888">
+        <div style="font-size:32px;margin-bottom:8px">👩‍🏫</div>
+        <p style="font-size:11px">Import Excel or add manually</p>
+      </div>
+    </div>
+    <div class="sidebar-btns">
+      <label class="import-btn" style="cursor:pointer">
+        📂 Import Excel
+        <input type="file" accept=".xlsx,.xls" id="xlsxInput" style="display:none" onchange="handleExcel(this)">
+      </label>
+      <button class="add-btn" onclick="addTeacher()">+ Add Teacher Manually</button>
+      <button class="btn-all" onclick="printAll()" style="border-radius:6px">🖨 Print All Teachers</button>
+    </div>
+  </div>
+
+  <div class="main" id="mainContent">
+    <div style="text-align:center;margin-top:60px;color:#888">
+      <div style="font-size:48px;margin-bottom:12px">📋</div>
+      <p style="font-size:14px;font-weight:600;color:#1a3a5c;margin-bottom:6px">NCISM Annexure-I Tool</p>
+      <p style="font-size:12px;color:#888;margin-bottom:20px">Import your Excel file or add teachers manually.</p>
+      <div class="drop-zone" id="dropZone" onclick="document.getElementById('xlsxInput').click()"
+        ondragover="event.preventDefault();this.classList.add('drag-over')"
+        ondragleave="this.classList.remove('drag-over')"
+        ondrop="handleDrop(event)">
+        <p>📥 Drop your Excel file here</p>
+        <span>or click to browse — .xlsx / .xls supported</span>
+      </div>
+      <div style="font-size:11px;color:#999;margin-top:8px">
+        Expected: one row per experience entry · Name column blank for continuation rows
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="printArea"></div>
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+let teachers = JSON.parse(localStorage.getItem('ncism_v2') || '[]');
+let currentId = null;
+
+function save() { localStorage.setItem('ncism_v2', JSON.stringify(teachers)); }
+function getT(id) { return teachers.find(t => t.id === id); }
+
+function toast(msg, dur=3000) {
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.style.display = 'block';
+  setTimeout(() => el.style.display = 'none', dur);
+}
+
+// ── EXCEL IMPORT ──────────────────────────────────────────────
+function handleDrop(e) {
+  e.preventDefault();
+  document.getElementById('dropZone').classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file) processExcel(file);
+}
+
+function handleExcel(input) {
+  if (input.files[0]) processExcel(input.files[0]);
+  input.value = '';
+}
+
+function processExcel(file) {
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const wb = XLSX.read(e.target.result, { type: 'binary', cellDates: true });
+      const ws = wb.Sheets[wb.SheetNames[0]];
+      const rows = XLSX.utils.sheet_to_json(ws, { defval: '', raw: false });
+      if (!rows.length) { toast('No data found in Excel.'); return; }
+
+      // Detect column headers flexibly (case-insensitive, trim)
+      const sample = rows[0];
+      const keys = Object.keys(sample);
+
+      function findCol(...candidates) {
+        for (const c of candidates) {
+          const k = keys.find(k => k.trim().toLowerCase().includes(c.toLowerCase()));
+          if (k) return k;
+        }
+        return null;
+      }
+
+      const COL = {
+        name:        findCol('name of the teacher','name of teacher','teacher name','name'),
+        code:        findCol('teacher code','code'),
+        father:      findCol("father's name","father name","father"),
+        dob:         findCol('date of birth','dob','birth'),
+        ugDeg:       findCol('ug qualification','ug degree','ug qual','under'),
+        pgDeg:       findCol('pg qualification','pg degree','pg qual','post'),
+        appt:        findCol('nature of','appointment','nature'),
+        localAddr:   findCol('local residential','local addr','local'),
+        permAddr:    findCol('permanent addr','permanent'),
+        phone:       findCol('telephone','phone'),
+        mobile:      findCol('mobile'),
+        expFrom:     findCol('from','duration from','start'),
+        expTo:       findCol('to date','to','duration to','end'),
+        designation: findCol('designation'),
+        college:     findCol('name of the college','college','institution'),
+        dept:        findCol('department','subject of','dept'),
+      };
+
+      // Parse UG/PG — may be combined "BAMS, KU, 2002" or split columns
+      const ugUnivCol = findCol('ug university','ug univ');
+      const ugYearCol = findCol('ug year');
+      const pgUnivCol = findCol('pg university','pg univ');
+      const pgYearCol = findCol('pg year');
+      const pgSubCol  = findCol('pg subject','subject');
+
+      const imported = [];
+      let current = null;
+
+      rows.forEach(row => {
+        const rawName = COL.name ? (row[COL.name]||'').toString().trim() : '';
+        const isNewTeacher = rawName.length > 0;
+
+        if (isNewTeacher) {
+          // Parse UG
+          let ugDeg='', ugUniv='', ugYear='';
+          if (ugUnivCol || ugYearCol) {
+            ugDeg  = COL.ugDeg ? row[COL.ugDeg]||'' : '';
+            ugUniv = ugUnivCol ? row[ugUnivCol]||'' : '';
+            ugYear = ugYearCol ? row[ugYearCol]||'' : '';
+          } else if (COL.ugDeg) {
+            const parts = (row[COL.ugDeg]||'').split(/[,|\/]/).map(s=>s.trim());
+            ugDeg=parts[0]||''; ugUniv=parts[1]||''; ugYear=parts[2]||'';
+          }
+          // Parse PG
+          let pgDeg='', pgSubject='', pgUniv='', pgYear='';
+          if (pgUnivCol || pgYearCol) {
+            pgDeg     = COL.pgDeg ? row[COL.pgDeg]||'' : '';
+            pgSubject = pgSubCol  ? row[pgSubCol]||''  : '';
+            pgUniv    = pgUnivCol ? row[pgUnivCol]||'' : '';
+            pgYear    = pgYearCol ? row[pgYearCol]||'' : '';
+          } else if (COL.pgDeg) {
+            const parts = (row[COL.pgDeg]||'').split(/[,|\/]/).map(s=>s.trim());
+            pgDeg=parts[0]||''; pgSubject=parts[1]||''; pgUniv=parts[2]||''; pgYear=parts[3]||'';
+          }
+
+          current = {
+            id: 'T'+Date.now()+Math.random().toString(36).slice(2,6),
+            name:      rawName,
+            code:      COL.code   ? (row[COL.code]||'').toString().trim()   : '',
+            fatherName:COL.father ? (row[COL.father]||'').toString().trim() : '',
+            dob:       COL.dob    ? parseDateStr(row[COL.dob])              : '',
+            ugDeg, ugUniv, ugYear,
+            pgDeg, pgSubject, pgUniv, pgYear,
+            appointment: COL.appt ? (row[COL.appt]||'Regular').toString().trim() : 'Regular',
+            localAddr: COL.localAddr ? (row[COL.localAddr]||'').toString().trim() : '',
+            permAddr:  COL.permAddr  ? (row[COL.permAddr]||'').toString().trim()  : '',
+            phone:     COL.phone  ? (row[COL.phone]||'').toString().trim()  : '',
+            mobile:    COL.mobile ? (row[COL.mobile]||'').toString().trim() : '',
+            photo: null,
+            experience: []
+          };
+          imported.push(current);
+        }
+
+        // Add experience row (for both new teacher and continuation rows)
+        if (current) {
+          const from = COL.expFrom     ? parseDateStr(row[COL.expFrom])            : '';
+          const to   = COL.expTo       ? parseDateStr(row[COL.expTo])              : '';
+          const des  = COL.designation ? (row[COL.designation]||'').toString().trim() : '';
+          const col  = COL.college     ? (row[COL.college]||'').toString().trim()     : '';
+          const dep  = COL.dept        ? (row[COL.dept]||'').toString().trim()        : '';
+          if (from || to || des || col || dep) {
+            current.experience.push({ from, to, designation: des, college: col, dept: dep });
+          }
+        }
+      });
+
+      if (!imported.length) { toast('Could not parse any teacher records. Check column headers.'); return; }
+
+      // Merge with existing (avoid duplicates by name)
+      const existingNames = teachers.map(t => t.name.toLowerCase());
+      let added = 0, skipped = 0;
+      imported.forEach(t => {
+        if (existingNames.includes(t.name.toLowerCase())) { skipped++; }
+        else { teachers.push(t); added++; }
+      });
+
+      save();
+      renderList();
+      if (teachers.length) loadTeacher(teachers[0].id);
+      toast(`✔ Imported ${added} teacher(s)${skipped ? ` · ${skipped} duplicate(s) skipped` : ''}`);
+
+    } catch(err) {
+      toast('Error reading file: ' + err.message);
+      console.error(err);
+    }
+  };
+  reader.readAsBinaryString(file);
+}
+
+function parseDateStr(val) {
+  if (!val) return '';
+  const s = val.toString().trim();
+  if (!s) return '';
+  // Try ISO
+  if (/^\d{4}-\d{2}-\d{2}/.test(s)) return s.slice(0,10);
+  // Try DD/MM/YYYY or DD-MM-YYYY
+  const m = s.match(/^(\d{1,2})[\/\-\.](\d{1,2})[\/\-\.](\d{4})/);
+  if (m) return `${m[3]}-${m[2].padStart(2,'0')}-${m[1].padStart(2,'0')}`;
+  // Try MM/DD/YYYY
+  const m2 = s.match(/^(\d{1,2})[\/\-\.](\d{1,2})[\/\-\.](\d{2,4})/);
+  if (m2) {
+    const yr = m2[3].length===2 ? '20'+m2[3] : m2[3];
+    return `${yr}-${m2[1].padStart(2,'0')}-${m2[2].padStart(2,'0')}`;
+  }
+  return s; // fallback: keep as text
+}
+
+// ── TEACHER LIST ──────────────────────────────────────────────
+function renderList() {
+  const list = document.getElementById('teacherList');
+  const count = document.getElementById('teacherCount');
+  count.textContent = teachers.length ? `${teachers.length} teacher(s) loaded` : 'No teachers loaded';
+  if (!teachers.length) {
+    list.innerHTML = '<div style="text-align:center;padding:30px 10px;color:#888"><div style="font-size:32px;margin-bottom:8px">👩‍🏫</div><p style="font-size:11px">No teachers yet</p></div>';
+    return;
+  }
+  list.innerHTML = teachers.map((t,i) => `
+    <div class="teacher-item ${t.id===currentId?'active':''}" onclick="loadTeacher('${t.id}')">
+      <div>
+        <div class="t-name">${t.name||'Teacher '+(i+1)}</div>
+        <div class="t-code">${t.code||'No code'} · ${t.experience.length} exp</div>
+      </div>
+      <button class="del-btn" onclick="delT('${t.id}',event)" title="Delete">✕</button>
+    </div>
+  `).join('');
+}
+
+function delT(id, e) {
+  e.stopPropagation();
+  if (!confirm('Remove this teacher?')) return;
+  teachers = teachers.filter(t => t.id !== id);
+  if (currentId === id) { currentId = null; renderEmpty(); }
+  save(); renderList();
+}
+
+function renderEmpty() {
+  document.getElementById('mainContent').innerHTML = '<div style="text-align:center;margin-top:60px;color:#888"><div style="font-size:48px;margin-bottom:12px">📋</div><p style="font-size:14px;font-weight:600;color:#1a3a5c">Select a teacher to edit</p></div>';
+}
+
+function addTeacher() {
+  const id = 'T'+Date.now();
+  teachers.push({ id, name:'', code:'', fatherName:'', dob:'', ugDeg:'', ugUniv:'', ugYear:'', pgDeg:'', pgSubject:'', pgUniv:'', pgYear:'', appointment:'Regular', localAddr:'', permAddr:'', phone:'', mobile:'', photo:null, experience:[{from:'',to:'',designation:'',college:'',dept:''}] });
+  save(); renderList(); loadTeacher(id);
+}
+
+function loadTeacher(id) {
+  currentId = id;
+  renderList();
+  renderForm();
+}
+
+// ── FORM ──────────────────────────────────────────────────────
+function renderForm() {
+  const main = document.getElementById('mainContent');
+  if (!currentId) { renderEmpty(); return; }
+  const t = getT(currentId);
+
+  const expRows = t.experience.map((e,i) => `
+    <tr>
+      <td><input type="date" value="${e.from}" onchange="updExp(${i},'from',this.value)"></td>
+      <td><input type="date" value="${e.to}" onchange="updExp(${i},'to',this.value)"></td>
+      <td><input type="text" placeholder="e.g. Lecturer" value="${esc(e.designation)}" oninput="updExp(${i},'designation',this.value)"></td>
+      <td><input type="text" placeholder="College name" value="${esc(e.college)}" oninput="updExp(${i},'college',this.value)"></td>
+      <td><input type="text" placeholder="Dept" value="${esc(e.dept)}" oninput="updExp(${i},'dept',this.value)"></td>
+      <td><button class="rm-btn" onclick="rmExp(${i})">✕</button></td>
+    </tr>
+  `).join('');
+
+  main.innerHTML = `
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+      <div>
+        <h2 style="font-size:15px;color:#1a3a5c;font-weight:700">${t.name||'New Teacher'}</h2>
+        <p style="font-size:11px;color:#888">Code: ${t.code||'—'} · ${t.experience.length} experience record(s)</p>
+      </div>
+      <button class="btn-print" onclick="printOne('${currentId}')">🖨 Print This Teacher</button>
+    </div>
+
+    <div class="form-card">
+      <h3>Basic Information</h3>
+      <div class="grid-3">
+        <div class="field" style="grid-column:span 2">
+          <label>Full Name</label>
+          <input type="text" value="${esc(t.name)}" oninput="upd('name',this.value)">
+        </div>
+        <div class="field">
+          <label>Teacher Code</label>
+          <input type="text" value="${esc(t.code)}" oninput="upd('code',this.value)">
+        </div>
+        <div class="field" style="grid-column:span 2">
+          <label>Father's Name</label>
+          <input type="text" value="${esc(t.fatherName)}" oninput="upd('fatherName',this.value)">
+        </div>
+        <div class="field">
+          <label>Date of Birth</label>
+          <input type="date" value="${t.dob}" onchange="upd('dob',this.value)">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h3>UG Qualification</h3>
+      <div class="grid-3">
+        <div class="field"><label>Degree</label><input type="text" placeholder="e.g. BAMS" value="${esc(t.ugDeg)}" oninput="upd('ugDeg',this.value)"></div>
+        <div class="field"><label>University</label><input type="text" value="${esc(t.ugUniv)}" oninput="upd('ugUniv',this.value)"></div>
+        <div class="field"><label>Year</label><input type="text" value="${esc(t.ugYear)}" oninput="upd('ugYear',this.value)"></div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h3>PG Qualification</h3>
+      <div class="grid-3">
+        <div class="field"><label>Degree</label><input type="text" placeholder="e.g. MD (Ayu)" value="${esc(t.pgDeg)}" oninput="upd('pgDeg',this.value)"></div>
+        <div class="field"><label>Subject / Specialisation</label><input type="text" value="${esc(t.pgSubject)}" oninput="upd('pgSubject',this.value)"></div>
+        <div class="field"><label>University</label><input type="text" value="${esc(t.pgUniv)}" oninput="upd('pgUniv',this.value)"></div>
+        <div class="field"><label>Year</label><input type="text" value="${esc(t.pgYear)}" oninput="upd('pgYear',this.value)"></div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h3>Experience (Chronological) <span class="count-badge">${t.experience.length}</span></h3>
+      <table class="exp-table">
+        <thead><tr>
+          <th style="width:14%">From</th><th style="width:14%">To</th>
+          <th style="width:20%">Designation</th><th style="width:28%">College</th>
+          <th style="width:18%">Department</th><th style="width:6%"></th>
+        </tr></thead>
+        <tbody>${expRows}</tbody>
+      </table>
+      <button class="add-exp-btn" onclick="addExp()">+ Add Row</button>
+    </div>
+
+    <div class="form-card">
+      <h3>Appointment & Contact</h3>
+      <div class="grid-3" style="margin-bottom:10px">
+        <div class="field">
+          <label>Nature of Appointment</label>
+          <select onchange="upd('appointment',this.value)">
+            <option ${t.appointment==='Regular'?'selected':''}>Regular</option>
+            <option ${t.appointment==='Contractual'?'selected':''}>Contractual</option>
+            <option ${t.appointment==='Deputation'?'selected':''}>Deputation</option>
+          </select>
+        </div>
+        <div class="field"><label>Phone No.</label><input type="text" value="${esc(t.phone)}" oninput="upd('phone',this.value)"></div>
+        <div class="field"><label>Mobile No.</label><input type="text" value="${esc(t.mobile)}" oninput="upd('mobile',this.value)"></div>
+      </div>
+      <div class="grid-2">
+        <div class="field"><label>Local Residential Address</label><textarea oninput="upd('localAddr',this.value)">${esc(t.localAddr)}</textarea></div>
+        <div class="field"><label>Permanent Address</label><textarea oninput="upd('permAddr',this.value)">${esc(t.permAddr)}</textarea></div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h3>Photograph</h3>
+      <div style="display:flex;align-items:center;gap:16px">
+        <div class="photo-box" onclick="document.getElementById('pi_${currentId}').click()">
+          ${t.photo?`<img src="${t.photo}" alt="Photo">`:'<span>Click to<br>upload photo</span>'}
+        </div>
+        <div style="font-size:11px;color:#666">
+          <p>Passport size photograph</p>
+          <p style="margin-top:6px;color:#c00">Attestation by Principal<br>on physical copy only</p>
+        </div>
+        <input type="file" id="pi_${currentId}" accept="image/*" style="display:none" onchange="uploadPhoto(this)">
+      </div>
+    </div>
+
+    <div class="action-bar no-print">
+      <button class="btn-print" onclick="printOne('${currentId}')">🖨 Print This Teacher</button>
+      <button class="btn-all" onclick="printAll()">🖨 Print All (${teachers.length})</button>
+    </div>
+  `;
+}
+
+function esc(s) { return (s||'').toString().replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function upd(field, val) {
+  const t = getT(currentId); if (!t) return;
+  t[field] = val; save();
+  if (field==='name'||field==='code') renderList();
+}
+
+function updExp(i, field, val) {
+  const t = getT(currentId); if (!t) return;
+  t.experience[i][field] = val; save();
+}
+
+function addExp() {
+  const t = getT(currentId); if (!t) return;
+  t.experience.push({from:'',to:'',designation:'',college:'',dept:''});
+  save(); renderForm();
+}
+
+function rmExp(i) {
+  const t = getT(currentId); if (!t||t.experience.length<=1) return;
+  t.experience.splice(i,1); save(); renderForm();
+}
+
+function uploadPhoto(input) {
+  const t = getT(currentId); if (!t||!input.files[0]) return;
+  const r = new FileReader();
+  r.onload = e => { t.photo = e.target.result; save(); renderForm(); };
+  r.readAsDataURL(input.files[0]);
+}
+
+// ── PRINT ─────────────────────────────────────────────────────
+function fmtDate(d) {
+  if (!d) return '';
+  const dt = new Date(d);
+  if (isNaN(dt)) return d;
+  return dt.toLocaleDateString('en-IN',{day:'2-digit',month:'2-digit',year:'numeric'});
+}
+
+function buildPage(t) {
+  const ug = [t.ugDeg, t.ugUniv, t.ugYear].filter(Boolean).join(', ');
+  const pg = [t.pgDeg+(t.pgSubject?' — '+t.pgSubject:''), t.pgUniv, t.pgYear].filter(Boolean).join(', ');
+  const expRows = t.experience.map(e=>`
+    <tr>
+      <td>${fmtDate(e.from)}${e.to?' to '+fmtDate(e.to):''}</td>
+      <td>${e.designation||''}</td>
+      <td>${e.college||''}</td>
+      <td>${e.dept||''}</td>
+    </tr>`).join('');
+  const photoCell = t.photo
+    ? `<img src="${t.photo}" class="photo-print" alt="Photo">`
+    : `<div class="photo-placeholder">Affix Photograph<br>(Attested by Principal)</div>`;
+
+  return `<div class="print-wrap" style="page-break-after:always">
+    <div class="p-title">ANNEXURE-I</div>
+    <div class="p-inst">PROFORMA TO FURNISH THE DETAILS OF TEACHING STAFF</div>
+    <table class="p-table">
+      <thead><tr>
+        <th style="width:4%">S.No.</th>
+        <th style="width:13%">Name &amp; Teacher Code</th>
+        <th style="width:9%">Father's Name</th>
+        <th style="width:7%">DOB</th>
+        <th style="width:10%">UG Qualification</th>
+        <th style="width:10%">PG Qualification</th>
+        <th style="width:20%">Experience (Chronological)</th>
+        <th style="width:7%">Appointment</th>
+        <th style="width:10%">Addresses &amp; Contact</th>
+        <th style="width:5%">Photo</th>
+        <th style="width:5%">Teacher Signature</th>
+        <th style="width:5%">Visitor Verification</th>
+      </tr></thead>
+      <tbody><tr>
+        <td style="text-align:center">1</td>
+        <td><strong>${t.name||'—'}</strong><br><span style="font-size:7.5pt;color:#555">Code: ${t.code||'—'}</span></td>
+        <td>${t.fatherName||'—'}</td>
+        <td>${fmtDate(t.dob)||'—'}</td>
+        <td>${ug||'—'}</td>
+        <td>${pg||'—'}</td>
+        <td><table class="exp-sub">
+          <tr><th>Period</th><th>Designation</th><th>College</th><th>Dept</th></tr>
+          ${expRows||'<tr><td colspan="4">—</td></tr>'}
+        </table></td>
+        <td style="text-align:center">${t.appointment||'—'}</td>
+        <td style="font-size:7.5pt">
+          <strong>Local:</strong><br>${(t.localAddr||'—').replace(/\n/g,'<br>')}
+          <br><strong style="margin-top:3px;display:block">Permanent:</strong><br>${(t.permAddr||'—').replace(/\n/g,'<br>')}
+          <br><strong>Ph:</strong> ${t.phone||'—'}
+          <br><strong>Mob:</strong> ${t.mobile||'—'}
+        </td>
+        <td style="text-align:center">${photoCell}</td>
+        <td><div class="sig-box">Sign at visitation</div></td>
+        <td><div class="sig-box">Visitor sign</div></td>
+      </tr></tbody>
+    </table>
+    <div style="margin-top:8px;font-size:7.5pt"><strong>Signature of Principal with date:</strong> ___________________________</div>
+    <div style="margin-top:10px;font-size:7pt;color:#555;border-top:1px solid #ccc;padding-top:5px">
+      <strong>Note:</strong> 1. Attach certified copies of UG/PG Degree, Registration Certificate, Experience Certificates and Relieving Order with self-certified Affidavit.
+      2. Teacher shall sign in presence of NCISM visitors. 3. Duly signed proforma to be uploaded in visitor's report.
+    </div>
+  </div>`;
+}
+
+function printOne(id) {
+  const t = getT(id); if (!t) return;
+  document.getElementById('printArea').innerHTML = buildPage(t);
+  window.print();
+  document.getElementById('printArea').innerHTML = '';
+}
+
+function printAll() {
+  if (!teachers.length) { toast('No teachers to print.'); return; }
+  document.getElementById('printArea').innerHTML = teachers.map(t=>buildPage(t)).join('');
+  window.print();
+  document.getElementById('printArea').innerHTML = '';
+}
+
+// Init
+renderList();
+if (teachers.length) loadTeacher(teachers[0].id);
+</script>
+</body>
+</html>
