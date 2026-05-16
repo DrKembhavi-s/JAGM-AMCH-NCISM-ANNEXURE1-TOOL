@@ -15,277 +15,320 @@ body{font-family:Arial,sans-serif;font-size:13px;background:#f5f5f5;color:#222}
 .teacher-item{padding:8px 10px;border-radius:6px;cursor:pointer;margin-bottom:4px;border:1px solid transparent;display:flex;align-items:center;justify-content:space-between}
 .teacher-item:hover{background:#f0f4f8}
 .teacher-item.active{background:#e8f0fb;border-color:#3a7bd5}
-.teacher-item .t-name{font-size:12px;font-weight:600;color:#1a3a5c}
-.teacher-item .t-sub{font-size:11px;color:#666}
-.teacher-item .del-btn{background:none;border:none;color:#c00;cursor:pointer;font-size:14px;padding:0 2px;display:none}
+.t-name{font-size:12px;font-weight:600;color:#1a3a5c}
+.t-sub{font-size:11px;color:#666}
+.del-btn{background:none;border:none;color:#c00;cursor:pointer;font-size:14px;padding:0 2px;display:none}
 .teacher-item:hover .del-btn{display:block}
 .sidebar-btns{padding:8px;display:flex;flex-direction:column;gap:6px;border-top:1px solid #eee}
 .add-btn{padding:8px;background:#1a3a5c;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600}
-.add-btn:hover{background:#2a5a8c}
-.import-btn-lbl{padding:8px;background:#1a6a1a;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;text-align:center;display:block}
-.import-btn-lbl:hover{background:#155a15}
+.import-lbl{padding:8px;background:#1a6a1a;color:#fff;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;text-align:center;display:block}
 .btn-all{padding:8px;background:#7a4a00;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600}
 .main{flex:1;overflow-y:auto;padding:16px;background:#f5f5f5}
-.form-card{background:#fff;border-radius:8px;border:1px solid #ddd;padding:16px;margin-bottom:16px}
-.form-card h3{font-size:13px;font-weight:700;color:#1a3a5c;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #e8f0fb}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
-.field{display:flex;flex-direction:column;gap:3px}
-.field label{font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:0.3px}
-.field input,.field select,.field textarea{border:1px solid #ccc;border-radius:4px;padding:6px 8px;font-size:12px;font-family:Arial;resize:vertical}
-.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:#3a7bd5}
-.field textarea{min-height:60px}
-.exp-table{width:100%;border-collapse:collapse;margin-bottom:8px}
-.exp-table th{background:#1a3a5c;color:#fff;padding:6px 8px;font-size:11px;text-align:left;font-weight:600}
-.exp-table td{padding:4px;border-bottom:1px solid #eee}
-.exp-table td input{width:100%;border:1px solid #ccc;border-radius:3px;padding:4px 6px;font-size:11px}
-.exp-table .rm-btn{background:none;border:none;color:#c00;cursor:pointer;font-size:14px}
-.add-exp-btn{font-size:11px;padding:4px 10px;background:#e8f0fb;color:#1a3a5c;border:1px solid #3a7bd5;border-radius:4px;cursor:pointer}
-.photo-box{width:100px;height:120px;border:1px dashed #999;border-radius:4px;display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;background:#f9f9f9}
+.card{background:#fff;border-radius:8px;border:1px solid #ddd;padding:16px;margin-bottom:14px}
+.card h3{font-size:13px;font-weight:700;color:#1a3a5c;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #e8f0fb}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px}
+.f{display:flex;flex-direction:column;gap:3px}
+.f label{font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:0.3px}
+.f input,.f select,.f textarea{border:1px solid #ccc;border-radius:4px;padding:6px 8px;font-size:12px;font-family:Arial;resize:vertical}
+.f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:#3a7bd5}
+.f textarea{min-height:56px}
+.etable{width:100%;border-collapse:collapse;margin-bottom:8px;font-size:12px}
+.etable th{background:#1a3a5c;color:#fff;padding:6px 8px;font-size:11px;text-align:left}
+.etable td{padding:3px;border-bottom:1px solid #eee}
+.etable td input{width:100%;border:1px solid #ccc;border-radius:3px;padding:4px 6px;font-size:11px}
+.rm-btn{background:none;border:none;color:#c00;cursor:pointer;font-size:14px}
+.add-exp{font-size:11px;padding:4px 10px;background:#e8f0fb;color:#1a3a5c;border:1px solid #3a7bd5;border-radius:4px;cursor:pointer}
+.photo-box{width:90px;height:110px;border:1px dashed #999;border-radius:4px;display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;background:#f9f9f9;flex-shrink:0}
 .photo-box img{width:100%;height:100%;object-fit:cover}
 .photo-box span{font-size:10px;color:#999;text-align:center;padding:4px}
-.action-bar{display:flex;gap:8px;padding:12px;background:#fff;border-top:1px solid #eee;position:sticky;bottom:0;flex-wrap:wrap}
-.btn-print{padding:8px 16px;background:#1a6a1a;color:#fff;border:none;border-radius:5px;cursor:pointer;font-size:12px;font-weight:600}
-.count-badge{background:#3a7bd5;color:#fff;font-size:10px;padding:1px 6px;border-radius:10px;margin-left:6px}
-.drop-zone{border:2px dashed #3a7bd5;border-radius:8px;padding:24px;text-align:center;background:#f0f6ff;cursor:pointer;margin-bottom:12px;transition:background 0.2s}
-.drop-zone:hover,.drop-zone.drag-over{background:#ddeeff}
+.abar{display:flex;gap:8px;padding:12px;background:#fff;border-top:1px solid #eee;position:sticky;bottom:0;flex-wrap:wrap}
+.bp{padding:8px 14px;background:#1a6a1a;color:#fff;border:none;border-radius:5px;cursor:pointer;font-size:12px;font-weight:600}
+.drop-zone{border:2px dashed #3a7bd5;border-radius:8px;padding:24px;text-align:center;background:#f0f6ff;cursor:pointer;margin-bottom:12px}
+.drop-zone:hover,.dz-over{background:#ddeeff}
 .drop-zone p{font-size:13px;color:#1a3a5c;font-weight:600;margin-bottom:4px}
-.drop-zone span{font-size:11px;color:#666}
 .toast{position:fixed;bottom:20px;right:20px;background:#1a3a5c;color:#fff;padding:10px 16px;border-radius:6px;font-size:12px;z-index:999;display:none}
-.warn-box{background:#fff8e1;border:1px solid #f0a500;border-radius:6px;padding:10px 14px;margin-bottom:12px;font-size:11px;color:#7a5000}
-.info-box{background:#e8f0fb;border:1px solid #3a7bd5;border-radius:6px;padding:10px 14px;margin-bottom:12px;font-size:11px;color:#1a3a5c}
+.warn-row{background:#fff3cd;font-size:10px;color:#856404}
+.badge{display:inline-block;background:#3a7bd5;color:#fff;font-size:10px;padding:1px 6px;border-radius:10px;margin-left:5px}
+.issues-box{background:#fff3cd;border:1px solid #ffc107;border-radius:6px;padding:10px;margin-bottom:12px;font-size:11px;color:#7a5000}
 
 @media print{
-  .app,.sidebar,.main,.action-bar{all:unset;display:block}
+  .app,.sidebar,.main,.abar{all:unset;display:block}
   body{background:#fff;margin:0;padding:0}
   .no-print{display:none!important}
-  .print-wrap{display:block!important}
+  .pw{display:block!important}
 }
-.print-wrap{display:none}
-.p-title{text-align:center;font-size:13pt;font-weight:700;margin-bottom:8px;text-decoration:underline}
-.p-inst{text-align:center;font-size:10pt;margin-bottom:12px;font-weight:600}
-.p-table{width:100%;border-collapse:collapse;table-layout:fixed}
-.p-table th,.p-table td{border:1px solid #000;padding:4px 5px;font-size:8.5pt;vertical-align:top;word-break:break-word}
-.p-table th{background:#d0d8e8;font-weight:700;text-align:center;font-size:8pt}
-.exp-sub{width:100%;border-collapse:collapse;font-size:8pt}
-.exp-sub th{background:#eee;font-weight:700;text-align:left;padding:2px 3px;border-bottom:1px solid #999}
-.exp-sub td{padding:2px 3px;border-bottom:1px solid #ddd}
-.sig-box{border:1px solid #999;height:40px;margin-top:4px;font-size:7pt;color:#aaa;text-align:center;padding-top:14px}
-.photo-print{width:80px;height:95px;border:1px solid #999;object-fit:cover;display:block;margin:0 auto}
-.photo-placeholder{width:80px;height:95px;border:1px dashed #999;display:flex;align-items:center;justify-content:center;font-size:7pt;color:#aaa;margin:0 auto;text-align:center;line-height:1.4}
+.pw{display:none}
+.pt{text-align:center;font-size:13pt;font-weight:700;margin-bottom:8px;text-decoration:underline}
+.pi{text-align:center;font-size:10pt;margin-bottom:10px;font-weight:600}
+.ptb{width:100%;border-collapse:collapse;table-layout:fixed}
+.ptb th,.ptb td{border:1px solid #000;padding:4px 5px;font-size:8.5pt;vertical-align:top;word-break:break-word}
+.ptb th{background:#d0d8e8;font-weight:700;text-align:center;font-size:8pt}
+.esub{width:100%;border-collapse:collapse;font-size:8pt}
+.esub th{background:#eee;font-weight:700;text-align:left;padding:2px 3px;border-bottom:1px solid #999}
+.esub td{padding:2px 3px;border-bottom:1px solid #ddd}
+.sig-box{border:1px solid #999;height:38px;margin-top:4px;font-size:7pt;color:#aaa;text-align:center;padding-top:12px}
+.pp{width:78px;height:93px;border:1px solid #999;object-fit:cover;display:block;margin:0 auto}
+.pph{width:78px;height:93px;border:1px dashed #999;display:flex;align-items:center;justify-content:center;font-size:7pt;color:#aaa;margin:0 auto;text-align:center;line-height:1.4}
 </style>
 </head>
 <body>
-
 <div class="app no-print">
   <div class="sidebar">
     <div class="sidebar-header">
       <h2>NCISM Annexure-I</h2>
-      <p id="teacherCount">No teachers loaded</p>
+      <p id="tc">No teachers loaded</p>
     </div>
-    <div class="teacher-list" id="teacherList">
-      <div style="text-align:center;padding:30px 10px;color:#888">
-        <div style="font-size:32px;margin-bottom:8px">👩‍🏫</div>
-        <p style="font-size:11px">Import Excel or add manually</p>
-      </div>
-    </div>
+    <div class="teacher-list" id="tList"></div>
     <div class="sidebar-btns">
-      <label class="import-btn-lbl">
-        📂 Import Excel
-        <input type="file" accept=".xlsx,.xls" id="xlsxInput" style="display:none" onchange="handleExcel(this)">
+      <label class="import-lbl">📂 Import Excel
+        <input type="file" accept=".xlsx,.xls" id="xi" style="display:none" onchange="handleXL(this)">
       </label>
-      <button class="add-btn" onclick="addTeacher()">+ Add Manually</button>
+      <button class="add-btn" onclick="addT()">+ Add Manually</button>
       <button class="btn-all" onclick="printAll()">🖨 Print All Teachers</button>
     </div>
   </div>
-
-  <div class="main" id="mainContent">
-    <div style="text-align:center;margin-top:50px;color:#888;padding:0 20px">
-      <div style="font-size:48px;margin-bottom:12px">📋</div>
+  <div class="main" id="main">
+    <div style="text-align:center;margin-top:50px;padding:0 20px">
+      <div style="font-size:48px;margin-bottom:10px">📋</div>
       <p style="font-size:15px;font-weight:700;color:#1a3a5c;margin-bottom:6px">NCISM Annexure-I Tool</p>
-      <p style="font-size:12px;color:#888;margin-bottom:20px">Drop your Excel file below or use the sidebar button.</p>
-
-      <div class="drop-zone" id="dropZone"
-        onclick="document.getElementById('xlsxInput').click()"
-        ondragover="event.preventDefault();this.classList.add('drag-over')"
-        ondragleave="this.classList.remove('drag-over')"
+      <p style="font-size:12px;color:#888;margin-bottom:16px">Calibrated to your exact Excel format</p>
+      <div class="drop-zone" id="dz"
+        onclick="document.getElementById('xi').click()"
+        ondragover="event.preventDefault();this.classList.add('dz-over')"
+        ondragleave="this.classList.remove('dz-over')"
         ondrop="handleDrop(event)">
         <p>📥 Drop Teachers AnnexureI 2026.xlsx here</p>
-        <span>or click to browse</span>
+        <span>or click to browse · .xlsx / .xls</span>
       </div>
-
-      <div class="info-box" style="text-align:left">
-        <strong>Expected column headers (exact match to your file):</strong><br><br>
-        Sl. No &nbsp;|&nbsp; Name of the Teacher and teacher code &nbsp;|&nbsp; Father's Name &nbsp;|&nbsp;
-        Date of Birth &nbsp;|&nbsp; UG Qualification (University &amp; year) &nbsp;|&nbsp;
-        PG Qualification with subject (University &amp; year) &nbsp;|&nbsp;
-        Date wise details of Experience... (Duration) &nbsp;|&nbsp; Designation &nbsp;|&nbsp;
-        Name of the college &nbsp;|&nbsp; Department (Subject of) &nbsp;|&nbsp;
-        Nature of present appointment &nbsp;|&nbsp; Local Residential Address &nbsp;|&nbsp;
-        Permanent Address &nbsp;|&nbsp; Telephone No. &amp; Mobile No.
-      </div>
-
-      <div class="warn-box" style="text-align:left">
-        <strong>Multiple rows per teacher:</strong> Leave the "Name" column blank in continuation rows.
-        Only the first row of each teacher needs Name, DOB, qualifications etc.
-        Each row (first or continuation) should have its own experience duration, designation, college, department.
+      <div style="font-size:11px;color:#666;background:#f0f4f8;border-radius:6px;padding:10px;text-align:left">
+        <strong>Parser handles your exact formats:</strong><br>
+        ✔ Name+Code: "DR K M MATH AYSS00317"<br>
+        ✔ Dates: DD/MM/YYYY · DD/Mon/YYYY · DD MonthName YYYY<br>
+        ✔ Duration: "01/Jun/2010 to Till date"<br>
+        ✔ UG/PG: "BAMS RGUHS BANGALORE" (space-separated)<br>
+        ✔ Multiple rows per teacher (blank name = continuation)
       </div>
     </div>
   </div>
 </div>
-
-<div id="printArea"></div>
+<div id="pArea"></div>
 <div class="toast" id="toast"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script>
-let teachers = JSON.parse(localStorage.getItem('ncism_v3') || '[]');
-let currentId = null;
+let teachers = JSON.parse(localStorage.getItem('ncism_v4')||'[]');
+let cid = null;
 
-function save(){ localStorage.setItem('ncism_v3', JSON.stringify(teachers)); }
+function save(){ localStorage.setItem('ncism_v4', JSON.stringify(teachers)); }
 function getT(id){ return teachers.find(t=>t.id===id); }
-function toast(msg,dur=3500){
-  const el=document.getElementById('toast');
-  el.textContent=msg; el.style.display='block';
-  setTimeout(()=>el.style.display='none',dur);
+function toast(m,d=3500){ const e=document.getElementById('toast'); e.textContent=m; e.style.display='block'; setTimeout(()=>e.style.display='none',d); }
+
+// ══ PARSERS ═══════════════════════════════════════════════════
+
+const MONTHS = {jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,oct:10,nov:11,dec:12,
+  january:1,february:2,march:3,april:4,june:6,july:7,august:8,september:9,october:10,november:11,december:12};
+
+// Clean common typos in a raw date string
+function cleanDateStr(s) {
+  s = s.toString().trim()
+    .replace(/\/\//g, '/')        // double slash
+    .replace(/^0\//,'01/')        // leading "0/"
+    .replace(/(\d{5,})/g, m => m.slice(0,4)); // extra digits e.g. 20202→2020
+  return s;
 }
 
-// ── EXACT COLUMN KEYS from user's file ────────────────────────
-// We match by checking if the key INCLUDES any of these substrings (lowercase)
+// Parse a single date string to ISO YYYY-MM-DD or return raw string if unparseable
+function parseSingleDate(raw) {
+  if (!raw) return '';
+  let s = cleanDateStr(raw).trim();
+  if (!s) return '';
+
+  // Already ISO
+  if (/^\d{4}-\d{2}-\d{2}/.test(s)) return s.slice(0,10);
+
+  // DD/Mon/YYYY or DD-Mon-YYYY e.g. "17/Nov/2006" "12/Aug/2007"
+  const mname1 = s.match(/^(\d{1,2})[\/\-\s]([A-Za-z]+)[\/\-\s\,](\d{4})/);
+  if (mname1) {
+    const mo = MONTHS[mname1[2].toLowerCase().slice(0,3)];
+    if (mo) return `${mname1[3]}-${String(mo).padStart(2,'0')}-${mname1[1].padStart(2,'0')}`;
+  }
+
+  // MonthName/YYYY e.g. "June/2014" (after removing bad leading digits)
+  const mname2 = s.match(/^([A-Za-z]+)[\/\s](\d{4})$/);
+  if (mname2) {
+    const mo = MONTHS[mname2[1].toLowerCase().slice(0,3)];
+    if (mo) return `${mname2[2]}-${String(mo).padStart(2,'0')}-01`;
+  }
+
+  // DD/MM/YYYY or DD-MM-YYYY
+  const dmy = s.match(/^(\d{1,2})[\/\-\.](\d{1,2})[\/\-\.](\d{4})/);
+  if (dmy) {
+    let d=parseInt(dmy[1]), m=parseInt(dmy[2]), y=parseInt(dmy[3]);
+    // If month > 12, swap (MM/DD/YYYY case)
+    if (m > 12 && d <= 12) [d, m] = [m, d];
+    // Validate
+    if (m >= 1 && m <= 12 && d >= 1 && d <= 31)
+      return `${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+  }
+
+  // DD/MM/YY
+  const dmy2 = s.match(/^(\d{1,2})[\/\-\.](\d{1,2})[\/\-\.](\d{2})$/);
+  if (dmy2) {
+    const y = parseInt(dmy2[3]) > 30 ? '19'+dmy2[3] : '20'+dmy2[3];
+    return `${y}-${dmy2[2].padStart(2,'0')}-${dmy2[1].padStart(2,'0')}`;
+  }
+
+  return s; // return as-is, flagged later
+}
+
+const TILL_DATE_PAT = /till\s*date|present|continuing|current|till$/i;
+
+// Parse "01/Jun/2010 to Till date" → {from, to, raw}
+function parseDuration(raw) {
+  if (!raw) return { from:'', to:'', raw:'' };
+  let s = raw.toString().replace(/\s+/g,' ').trim();
+
+  // Split on " TO ", " to ", " To ", " - " (with spaces)
+  const toIdx = s.search(/\s+[Tt][Oo]\s+/);
+  if (toIdx > -1) {
+    const toLen = s.match(/\s+[Tt][Oo]\s+/)[0].length;
+    const left  = s.slice(0, toIdx).trim();
+    const right = s.slice(toIdx + toLen).trim();
+    return {
+      from: parseSingleDate(left),
+      to:   TILL_DATE_PAT.test(right) ? '' : parseSingleDate(right),
+      raw:  s
+    };
+  }
+
+  // No "TO" found — try splitting two date-like tokens
+  // e.g. "20/01/2025\n30/04/2026" or just two adjacent date patterns
+  const dateTokens = s.match(/\d{1,2}[\/\-][A-Za-z0-9]{1,4}[\/\-]?\d{0,4}/g);
+  if (dateTokens && dateTokens.length >= 2) {
+    return { from: parseSingleDate(dateTokens[0]), to: parseSingleDate(dateTokens[1]), raw: s };
+  }
+
+  // Single date only
+  return { from: parseSingleDate(s), to: '', raw: s };
+}
+
+// Split "DR K M MATH AYSS00317" → {name, code}
+// Code pattern: AY followed by 2+ letters and 4-6 digits
+function parseNameCode(raw) {
+  if (!raw) return { name:'', code:'' };
+  const s = raw.toString().trim();
+  const codeMatch = s.match(/\b(AY[A-Z]{1,4}\d{4,6})\b/i);
+  if (codeMatch) {
+    const code = codeMatch[1].toUpperCase();
+    const name = s.replace(codeMatch[0], '').trim().replace(/\s+/g,' ');
+    return { name, code };
+  }
+  // Fallback: newline split
+  const nl = s.split(/\n/);
+  if (nl.length >= 2) return { name: nl[0].trim(), code: nl[1].trim() };
+  return { name: s, code: '' };
+}
+
+// Parse "BAMS RGUHS BANGALORE" or "MD(Samhita Siddanth) RGUHS BANGLORE"
+// Returns {deg, subject, univ, year}
+function parseQual(raw) {
+  if (!raw) return { deg:'', subject:'', univ:'', year:'' };
+  const s = raw.toString().trim();
+
+  // Extract year if present
+  const yearM = s.match(/\b(19|20)\d{2}\b/);
+  const year  = yearM ? yearM[0] : '';
+  let rest    = s.replace(year,'').trim();
+
+  // Extract subject from parentheses: "MD(Kayachikitsa)" or "MD (Kayachikitsa)"
+  const subjM = rest.match(/\(([^)]+)\)/);
+  const subject = subjM ? subjM[1].trim() : '';
+  rest = rest.replace(subjM?subjM[0]:'','').trim();
+
+  // Split remaining on comma, pipe, or multiple spaces
+  // Usually: "BAMS RGUHS BANGALORE" → deg=BAMS, univ=RGUHS BANGALORE
+  // or after subject removal: "MD  RGUHS BANGALORE"
+  const parts = rest.split(/,|\|/).map(p=>p.trim()).filter(Boolean);
+  if (parts.length >= 2) {
+    return { deg: parts[0], subject, univ: parts.slice(1).join(', '), year };
+  }
+  // Space-split: first token is degree, rest is university
+  const sp = rest.split(/\s+/);
+  const deg  = sp[0]||'';
+  const univ = sp.slice(1).join(' ');
+  return { deg, subject, univ, year };
+}
+
+// Parse contact "9482744080" or "Ph: 080-xxx Mob: 9876xxx"
+function parseContact(raw) {
+  if (!raw) return { phone:'', mobile:'' };
+  const s = raw.toString().trim();
+  const mobM = s.match(/mob(?:ile)?[:\s]+(\+?\d[\d\s\-]{8,})/i);
+  const phM  = s.match(/(?:ph(?:one)?|tel)[:\s]+(\+?\d[\d\s\-]{7,})/i);
+  if (mobM || phM) return { phone: phM?phM[1].trim():'', mobile: mobM?mobM[1].trim():'' };
+  // Split by / or newline
+  const parts = s.split(/[\/\n|]/).map(p=>p.trim().replace(/[^\d\+\-\s]/g,'')).filter(p=>/\d{7,}/.test(p));
+  if (parts.length >= 2) return { phone: parts[0], mobile: parts[1] };
+  // 10-digit number → mobile
+  return { phone:'', mobile: s.replace(/[^\d]/g,'').slice(0,10) };
+}
+
+// ══ COLUMN FINDER ═════════════════════════════════════════════
 const MATCHERS = {
-  slno:       ['sl. no','sl no','s. no','sno','serial'],
-  nameCode:   ['name of the teacher and teacher code','name of the teacher','teacher name'],
+  slno:       ['sl. no','sl no','s. no','serial no','sno'],
+  nameCode:   ['name of the teacher and teacher code','name of the teacher','teacher name and'],
   father:     ["father's name","father name","father"],
   dob:        ['date of birth','dob'],
-  ugQual:     ['ug qualification','ug qual','under graduate'],
+  ugQual:     ['ug qualification','ug qual','under graduate qual'],
   pgQual:     ['pg qualification with subject','pg qualification','pg qual'],
   duration:   ['date wise details','duration','experience in chronological','1st appointment'],
   designation:['designation'],
-  college:    ['name of the college','college'],
+  college:    ['name of the college','name of college','college'],
   dept:       ['department (subject','department','subject of'],
   appt:       ['nature of present appointment','nature of','appointment'],
   localAddr:  ['local residential','local addr'],
   permAddr:   ['permanent address','permanent addr'],
-  contact:    ['telephone no','mobile no','telephone & mobile','tel & mob'],
+  contact:    ['telephone no. & mobile','telephone no','mobile no','tel & mob','telephone'],
 };
 
-function findKey(keys, matcherList) {
-  for (const m of matcherList) {
-    const found = keys.find(k => k.toLowerCase().includes(m.toLowerCase()));
-    if (found) return found;
+function findCol(keys, matchers) {
+  for (const m of matchers) {
+    const k = keys.find(k => k.trim().toLowerCase().includes(m.toLowerCase()));
+    if (k) return k;
   }
   return null;
 }
 
-// ── PARSE NAME + CODE from single cell ───────────────────────
-// Formats: "Dr. Name (TC-001)" | "Dr. Name - TC001" | "Dr. Name\nTC-001"
-function parseNameCode(raw) {
-  if (!raw) return { name: '', code: '' };
-  const s = raw.toString().trim();
-  // Check parentheses: "Name (Code)"
-  const paren = s.match(/^(.+?)\s*[\(\[]\s*([^\)\]]+)\s*[\)\]]\s*$/);
-  if (paren) return { name: paren[1].trim(), code: paren[2].trim() };
-  // Check newline
-  const nl = s.split(/\n/);
-  if (nl.length >= 2) return { name: nl[0].trim(), code: nl[1].trim() };
-  // Check " - " separator (last segment)
-  const dash = s.match(/^(.+?)\s+[-–]\s+(\S+)\s*$/);
-  if (dash) return { name: dash[1].trim(), code: dash[2].trim() };
-  // No code found — entire string is name
-  return { name: s, code: '' };
-}
-
-// ── PARSE UG/PG combined cell ─────────────────────────────────
-// "BAMS, Rajiv Gandhi University, 2005" or "BAMS | RGU | 2005"
-function parseQual(raw) {
-  if (!raw) return [];
-  const parts = raw.toString().split(/[,|;\/]/).map(s=>s.trim()).filter(Boolean);
-  return parts; // [degree, university, year] or [degree+subject, university, year]
-}
-
-// ── PARSE DURATION cell ───────────────────────────────────────
-// "01/06/2006 to 31/05/2015" | "01/06/2006 - 31/05/2015" | "01/06/2006 to till date"
-function parseDuration(raw) {
-  if (!raw) return { from: '', to: '' };
-  const s = raw.toString().trim();
-  const sep = s.match(/\s+to\s+|\s*[-–]\s*/i);
-  if (!sep) return { from: parseDStr(s), to: '' };
-  const idx = s.search(/\s+to\s+|\s*[-–]\s*/i);
-  const matchLen = s.match(/\s+to\s+|\s*[-–]\s*/i)[0].length;
-  const left = s.slice(0, idx).trim();
-  const right = s.slice(idx + matchLen).trim();
-  return {
-    from: parseDStr(left),
-    to: /till date|present|continue|current/i.test(right) ? '' : parseDStr(right)
-  };
-}
-
-function parseDStr(s) {
-  if (!s) return '';
-  s = s.trim();
-  if (/^\d{4}-\d{2}-\d{2}/.test(s)) return s.slice(0,10);
-  // DD/MM/YYYY
-  const m = s.match(/^(\d{1,2})[\/\-\.](\d{1,2})[\/\-\.](\d{4})/);
-  if (m) return `${m[3]}-${m[2].padStart(2,'0')}-${m[1].padStart(2,'0')}`;
-  return s;
-}
-
-// ── PARSE CONTACT cell ────────────────────────────────────────
-// "08362123456 / 9876543210" | "Ph: 0836-2123456 Mob: 9876543210"
-function parseContact(raw) {
-  if (!raw) return { phone: '', mobile: '' };
-  const s = raw.toString().trim();
-  // Try Mob: pattern
-  const mobMatch = s.match(/mob(?:ile)?[:\s]+(\d[\d\s\-]+)/i);
-  const phMatch  = s.match(/(?:ph(?:one)?|tel(?:ephone)?)[:\s]+(\d[\d\s\-]+)/i);
-  if (mobMatch || phMatch) {
-    return {
-      phone:  phMatch  ? phMatch[1].trim()  : '',
-      mobile: mobMatch ? mobMatch[1].trim() : ''
-    };
-  }
-  // Split by / or newline or space-dash-space
-  const parts = s.split(/[\/\n]|(?:\s*[\-–]\s*)/).map(p=>p.trim()).filter(Boolean);
-  if (parts.length >= 2) return { phone: parts[0], mobile: parts[1] };
-  // Single number — put in mobile
-  return { phone: '', mobile: s };
-}
-
-// ── MAIN IMPORT ───────────────────────────────────────────────
+// ══ MAIN IMPORT ═══════════════════════════════════════════════
 function handleDrop(e) {
   e.preventDefault();
-  document.getElementById('dropZone').classList.remove('drag-over');
-  if (e.dataTransfer.files[0]) processExcel(e.dataTransfer.files[0]);
+  document.getElementById('dz').classList.remove('dz-over');
+  if (e.dataTransfer.files[0]) processXL(e.dataTransfer.files[0]);
 }
-function handleExcel(input) {
-  if (input.files[0]) processExcel(input.files[0]);
-  input.value='';
-}
+function handleXL(inp) { if (inp.files[0]) processXL(inp.files[0]); inp.value=''; }
 
-function processExcel(file) {
+function processXL(file) {
   const reader = new FileReader();
   reader.onload = e => {
     try {
       const wb = XLSX.read(e.target.result, { type:'binary', cellDates:true, raw:false });
       const ws = wb.Sheets[wb.SheetNames[0]];
       const rows = XLSX.utils.sheet_to_json(ws, { defval:'', raw:false });
-      if (!rows.length){ toast('No data rows found in Excel.'); return; }
+      if (!rows.length) { toast('No data rows found.'); return; }
 
       const keys = Object.keys(rows[0]);
       const C = {};
-      for (const [field, matchers] of Object.entries(MATCHERS)) {
-        C[field] = findKey(keys, matchers);
-      }
+      for (const [f, matchers] of Object.entries(MATCHERS)) C[f] = findCol(keys, matchers);
 
-      // Report unmatched critical columns
-      const missing = ['nameCode','dob','ugQual','pgQual','duration','designation','college','dept']
-        .filter(f => !C[f]);
-      if (missing.length) {
-        console.warn('Unmatched columns:', missing, '\nAvailable keys:', keys);
-      }
+      // Log unmatched for debugging
+      const miss = Object.entries(C).filter(([,v])=>!v).map(([k])=>k);
+      if (miss.length) console.warn('Unmatched columns:', miss, '\nKeys found:', keys);
 
       let current = null;
       const imported = [];
+      const issues = [];
 
       rows.forEach((row, ri) => {
         const rawName = C.nameCode ? (row[C.nameCode]||'').toString().trim() : '';
@@ -293,291 +336,275 @@ function processExcel(file) {
 
         if (isNew) {
           const { name, code } = parseNameCode(rawName);
-
-          const ugParts = parseQual(C.ugQual ? row[C.ugQual] : '');
-          const pgParts = parseQual(C.pgQual ? row[C.pgQual] : '');
-
-          // PG: first part may be "MD (Kayachikitsa)" — split degree and subject
-          let pgDeg='', pgSubject='';
-          if (pgParts[0]) {
-            const pgFirst = pgParts[0];
-            const subM = pgFirst.match(/^(.+?)\s*[\(\-–]\s*(.+?)\s*[\)]*$/);
-            if (subM) { pgDeg=subM[1].trim(); pgSubject=subM[2].trim(); }
-            else { pgDeg=pgFirst; pgSubject=pgParts[1]||''; }
-          }
-
-          const contact = parseContact(C.contact ? row[C.contact] : '');
+          const ugRaw = C.ugQual ? row[C.ugQual] : '';
+          const pgRaw = C.pgQual ? row[C.pgQual] : '';
+          const ugQ   = parseQual(ugRaw);
+          const pgQ   = parseQual(pgRaw);
+          const cont  = parseContact(C.contact ? row[C.contact] : '');
 
           current = {
             id: 'T'+Date.now()+Math.random().toString(36).slice(2,5),
             name, code,
-            fatherName: C.father    ? (row[C.father]||'').toString().trim()    : '',
-            dob:        C.dob       ? parseDStr(row[C.dob])                    : '',
-            ugDeg:      ugParts[0]||'',
-            ugUniv:     ugParts[1]||'',
-            ugYear:     ugParts[2]||'',
-            pgDeg,
-            pgSubject:  pgSubject || pgParts[2]||'',
-            pgUniv:     pgParts[pgSubject?1:2]||pgParts[1]||'',
-            pgYear:     pgParts[pgSubject?2:3]||pgParts[2]||pgParts[pgParts.length-1]||'',
-            appointment:C.appt      ? (row[C.appt]||'Regular').toString().trim(): 'Regular',
-            localAddr:  C.localAddr ? (row[C.localAddr]||'').toString().trim() : '',
-            permAddr:   C.permAddr  ? (row[C.permAddr]||'').toString().trim()  : '',
-            phone:      contact.phone,
-            mobile:     contact.mobile,
-            photo:      null,
-            experience: []
+            fatherName: C.father   ? (row[C.father]||'').toString().trim()    : '',
+            dob:        C.dob      ? parseSingleDate(row[C.dob])               : '',
+            ugDeg:   ugQ.deg,   ugUniv: ugQ.univ,   ugYear: ugQ.year,
+            pgDeg:   pgQ.deg,   pgSubject: pgQ.subject||pgQ.univ.split(/\s/)[0]||'',
+            pgUniv:  pgQ.univ,  pgYear: pgQ.year,
+            appointment: C.appt ? (row[C.appt]||'Regular').toString().trim() : 'Regular',
+            localAddr: C.localAddr ? (row[C.localAddr]||'').toString().trim() : '',
+            permAddr:  C.permAddr  ? (row[C.permAddr]||'').toString().trim()  : '',
+            phone: cont.phone, mobile: cont.mobile,
+            photo: null, experience: [], _issues: []
           };
           imported.push(current);
         }
 
-        // Experience row (new teacher or continuation)
+        // Experience row
         if (current) {
-          const dur = parseDuration(C.duration ? row[C.duration] : '');
-          const des = C.designation ? (row[C.designation]||'').toString().trim() : '';
-          const col = C.college     ? (row[C.college]||'').toString().trim()     : '';
-          const dep = C.dept        ? (row[C.dept]||'').toString().trim()        : '';
-          if (dur.from || dur.to || des || col || dep) {
-            current.experience.push({ from:dur.from, to:dur.to, designation:des, college:col, dept:dep });
+          const rawDur = C.duration    ? (row[C.duration]||'').toString().trim()    : '';
+          const des    = C.designation ? (row[C.designation]||'').toString().trim() : '';
+          const col    = C.college     ? (row[C.college]||'').toString().trim()     : '';
+          const dep    = C.dept        ? (row[C.dept]||'').toString().trim()        : '';
+
+          if (rawDur || des || col || dep) {
+            const dur = parseDuration(rawDur);
+            // Flag suspicious dates
+            const badDate = (dur.from && !/^\d{4}-\d{2}-\d{2}$/.test(dur.from)) ||
+                            (dur.to   && !/^\d{4}-\d{2}-\d{2}$/.test(dur.to));
+            current.experience.push({
+              from: dur.from, to: dur.to,
+              designation: des, college: col, dept: dep,
+              rawDur: badDate ? rawDur : '',
+              _warn: badDate
+            });
+            if (badDate) {
+              current._issues = current._issues||[];
+              current._issues.push(`Row ${ri+2}: "${rawDur}" — date could not be fully parsed`);
+              issues.push(`${current.name}: "${rawDur}"`);
+            }
           }
         }
       });
 
-      if (!imported.length){ toast('No teacher records parsed. Check column headers.'); return; }
+      if (!imported.length) { toast('No teacher records parsed. Check column headers.'); return; }
 
-      const existingNames = teachers.map(t=>t.name.toLowerCase());
+      const existing = teachers.map(t=>t.name.toLowerCase());
       let added=0, skipped=0;
       imported.forEach(t => {
-        if (existingNames.includes(t.name.toLowerCase())){ skipped++; }
+        if (existing.includes(t.name.toLowerCase())) skipped++;
         else { teachers.push(t); added++; }
       });
 
       save(); renderList();
-      if (teachers.length) loadTeacher(teachers[0].id);
-      toast(`✔ Imported ${added} teacher(s)${skipped?` · ${skipped} duplicate(s) skipped`:''}`);
+      if (teachers.length) loadT(teachers[0].id);
 
-    } catch(err) {
-      toast('Error: ' + err.message);
-      console.error(err);
-    }
+      let msg = `✔ Imported ${added} teacher(s)`;
+      if (skipped) msg += ` · ${skipped} duplicate(s) skipped`;
+      if (issues.length) msg += ` · ${issues.length} date issue(s) — check ⚠ rows`;
+      toast(msg, 5000);
+
+    } catch(err) { toast('Error: '+err.message); console.error(err); }
   };
   reader.readAsBinaryString(file);
 }
 
-// ── SIDEBAR ───────────────────────────────────────────────────
+// ══ SIDEBAR ═══════════════════════════════════════════════════
 function renderList() {
-  const list = document.getElementById('teacherList');
-  const count = document.getElementById('teacherCount');
-  count.textContent = teachers.length ? `${teachers.length} teacher(s) loaded` : 'No teachers loaded';
+  const list = document.getElementById('tList');
+  document.getElementById('tc').textContent = teachers.length ? `${teachers.length} teacher(s)` : 'No teachers loaded';
   if (!teachers.length) {
     list.innerHTML='<div style="text-align:center;padding:30px 10px;color:#888"><div style="font-size:32px;margin-bottom:8px">👩‍🏫</div><p style="font-size:11px">No teachers yet</p></div>';
     return;
   }
   list.innerHTML = teachers.map((t,i)=>`
-    <div class="teacher-item ${t.id===currentId?'active':''}" onclick="loadTeacher('${t.id}')">
+    <div class="teacher-item ${t.id===cid?'active':''}" onclick="loadT('${t.id}')">
       <div>
-        <div class="t-name">${t.name||'Teacher '+(i+1)}</div>
-        <div class="t-sub">${t.code||'No code'} · ${t.experience.length} exp</div>
+        <div class="t-name">${esc(t.name)||'Teacher '+(i+1)}${(t._issues&&t._issues.length)?'<span style="color:#f90;margin-left:4px">⚠</span>':''}</div>
+        <div class="t-sub">${esc(t.code)||'No code'} · ${t.experience.length} exp</div>
       </div>
       <button class="del-btn" onclick="delT('${t.id}',event)">✕</button>
     </div>`).join('');
 }
 
-function delT(id,e) {
+function delT(id,e){
   e.stopPropagation();
   if (!confirm('Remove this teacher?')) return;
   teachers=teachers.filter(t=>t.id!==id);
-  if (currentId===id){ currentId=null; renderEmpty(); }
+  if (cid===id){ cid=null; renderEmpty(); }
   save(); renderList();
 }
 
-function addTeacher() {
+function addT(){
   const id='T'+Date.now();
-  teachers.push({id,name:'',code:'',fatherName:'',dob:'',ugDeg:'',ugUniv:'',ugYear:'',pgDeg:'',pgSubject:'',pgUniv:'',pgYear:'',appointment:'Regular',localAddr:'',permAddr:'',phone:'',mobile:'',photo:null,experience:[{from:'',to:'',designation:'',college:'',dept:''}]});
-  save(); renderList(); loadTeacher(id);
+  teachers.push({id,name:'',code:'',fatherName:'',dob:'',ugDeg:'',ugUniv:'',ugYear:'',pgDeg:'',pgSubject:'',pgUniv:'',pgYear:'',appointment:'Regular',localAddr:'',permAddr:'',phone:'',mobile:'',photo:null,experience:[{from:'',to:'',designation:'',college:'',dept:'',rawDur:'',_warn:false}],_issues:[]});
+  save(); renderList(); loadT(id);
 }
 
-function renderEmpty() {
-  document.getElementById('mainContent').innerHTML='<div style="text-align:center;margin-top:80px;color:#888"><div style="font-size:48px;margin-bottom:12px">📋</div><p style="font-size:14px;font-weight:600;color:#1a3a5c">Select a teacher to edit</p></div>';
+function renderEmpty(){
+  document.getElementById('main').innerHTML='<div style="text-align:center;margin-top:80px;color:#888"><div style="font-size:48px;margin-bottom:12px">📋</div><p style="font-size:14px;font-weight:600;color:#1a3a5c">Select a teacher to edit</p></div>';
 }
 
-function loadTeacher(id){ currentId=id; renderList(); renderForm(); }
+function loadT(id){ cid=id; renderList(); renderForm(); }
 
-// ── FORM ──────────────────────────────────────────────────────
-function renderForm() {
-  const t = getT(currentId);
-  if (!t){ renderEmpty(); return; }
+// ══ FORM ══════════════════════════════════════════════════════
+function renderForm(){
+  const t=getT(cid); if(!t){renderEmpty();return;}
+  const issues = t._issues&&t._issues.length;
   const expRows = t.experience.map((e,i)=>`
-    <tr>
-      <td><input type="date" value="${e.from}" onchange="updExp(${i},'from',this.value)"></td>
-      <td><input type="date" value="${e.to}" onchange="updExp(${i},'to',this.value)"></td>
-      <td><input type="text" placeholder="Designation" value="${esc(e.designation)}" oninput="updExp(${i},'designation',this.value)"></td>
-      <td><input type="text" placeholder="College / Institution" value="${esc(e.college)}" oninput="updExp(${i},'college',this.value)"></td>
-      <td><input type="text" placeholder="Department" value="${esc(e.dept)}" oninput="updExp(${i},'dept',this.value)"></td>
-      <td><button class="rm-btn" onclick="rmExp(${i})">✕</button></td>
+    <tr class="${e._warn?'warn-row':''}">
+      <td><input type="date" value="${e.from}" onchange="ue(${i},'from',this.value)">
+        ${e._warn?`<div style="font-size:9px;color:#856404;margin-top:2px">Original: ${esc(e.rawDur)}</div>`:''}
+      </td>
+      <td><input type="date" value="${e.to}" onchange="ue(${i},'to',this.value)">
+        ${e.to?'':'<div style="font-size:9px;color:#666">Blank = Till date</div>'}
+      </td>
+      <td><input type="text" value="${esc(e.designation)}" oninput="ue(${i},'designation',this.value)"></td>
+      <td><input type="text" value="${esc(e.college)}" oninput="ue(${i},'college',this.value)"></td>
+      <td><input type="text" value="${esc(e.dept)}" oninput="ue(${i},'dept',this.value)"></td>
+      <td><button class="rm-btn" onclick="rmE(${i})">✕</button></td>
     </tr>`).join('');
 
-  document.getElementById('mainContent').innerHTML=`
+  document.getElementById('main').innerHTML=`
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">
       <div>
         <h2 style="font-size:15px;color:#1a3a5c;font-weight:700">${esc(t.name)||'New Teacher'}</h2>
-        <p style="font-size:11px;color:#888">Code: ${esc(t.code)||'—'} · ${t.experience.length} experience record(s)</p>
+        <p style="font-size:11px;color:#888">Code: ${esc(t.code)||'—'} · ${t.experience.length} experience records</p>
       </div>
-      <button class="btn-print" onclick="printOne('${currentId}')">🖨 Print This Teacher</button>
+      <button class="bp" onclick="printOne('${cid}')">🖨 Print This Teacher</button>
     </div>
 
-    <div class="form-card">
-      <h3>Basic Information</h3>
-      <div class="grid-3">
-        <div class="field" style="grid-column:span 2"><label>Full Name</label>
-          <input type="text" value="${esc(t.name)}" oninput="upd('name',this.value)"></div>
-        <div class="field"><label>Teacher Code</label>
-          <input type="text" value="${esc(t.code)}" oninput="upd('code',this.value)"></div>
-        <div class="field" style="grid-column:span 2"><label>Father's Name</label>
-          <input type="text" value="${esc(t.fatherName)}" oninput="upd('fatherName',this.value)"></div>
-        <div class="field"><label>Date of Birth</label>
-          <input type="date" value="${t.dob}" onchange="upd('dob',this.value)"></div>
+    ${issues?`<div class="issues-box"><strong>⚠ ${t._issues.length} date issue(s) — please verify highlighted rows below:</strong><br>${t._issues.map(x=>`• ${esc(x)}`).join('<br>')}</div>`:''}
+
+    <div class="card"><h3>Basic Information</h3>
+      <div class="g3">
+        <div class="f" style="grid-column:span 2"><label>Full Name</label><input type="text" value="${esc(t.name)}" oninput="upd('name',this.value)"></div>
+        <div class="f"><label>Teacher Code</label><input type="text" value="${esc(t.code)}" oninput="upd('code',this.value)"></div>
+        <div class="f" style="grid-column:span 2"><label>Father's Name</label><input type="text" value="${esc(t.fatherName)}" oninput="upd('fatherName',this.value)"></div>
+        <div class="f"><label>Date of Birth</label><input type="date" value="${t.dob}" onchange="upd('dob',this.value)"></div>
       </div>
     </div>
 
-    <div class="form-card">
-      <h3>UG Qualification</h3>
-      <div class="grid-3">
-        <div class="field"><label>Degree</label>
-          <input type="text" placeholder="e.g. BAMS" value="${esc(t.ugDeg)}" oninput="upd('ugDeg',this.value)"></div>
-        <div class="field"><label>University</label>
-          <input type="text" value="${esc(t.ugUniv)}" oninput="upd('ugUniv',this.value)"></div>
-        <div class="field"><label>Year</label>
-          <input type="text" value="${esc(t.ugYear)}" oninput="upd('ugYear',this.value)"></div>
+    <div class="card"><h3>UG Qualification</h3>
+      <div class="g3">
+        <div class="f"><label>Degree</label><input type="text" value="${esc(t.ugDeg)}" oninput="upd('ugDeg',this.value)"></div>
+        <div class="f"><label>University</label><input type="text" value="${esc(t.ugUniv)}" oninput="upd('ugUniv',this.value)"></div>
+        <div class="f"><label>Year</label><input type="text" value="${esc(t.ugYear)}" oninput="upd('ugYear',this.value)"></div>
       </div>
     </div>
 
-    <div class="form-card">
-      <h3>PG Qualification</h3>
-      <div class="grid-3">
-        <div class="field"><label>Degree</label>
-          <input type="text" placeholder="e.g. MD (Ayu)" value="${esc(t.pgDeg)}" oninput="upd('pgDeg',this.value)"></div>
-        <div class="field"><label>Subject / Specialisation</label>
-          <input type="text" value="${esc(t.pgSubject)}" oninput="upd('pgSubject',this.value)"></div>
-        <div class="field"><label>University</label>
-          <input type="text" value="${esc(t.pgUniv)}" oninput="upd('pgUniv',this.value)"></div>
-        <div class="field"><label>Year</label>
-          <input type="text" value="${esc(t.pgYear)}" oninput="upd('pgYear',this.value)"></div>
+    <div class="card"><h3>PG Qualification</h3>
+      <div class="g4">
+        <div class="f"><label>Degree</label><input type="text" value="${esc(t.pgDeg)}" oninput="upd('pgDeg',this.value)"></div>
+        <div class="f"><label>Subject</label><input type="text" value="${esc(t.pgSubject)}" oninput="upd('pgSubject',this.value)"></div>
+        <div class="f"><label>University</label><input type="text" value="${esc(t.pgUniv)}" oninput="upd('pgUniv',this.value)"></div>
+        <div class="f"><label>Year</label><input type="text" value="${esc(t.pgYear)}" oninput="upd('pgYear',this.value)"></div>
       </div>
     </div>
 
-    <div class="form-card">
-      <h3>Experience (Chronological) <span class="count-badge">${t.experience.length}</span></h3>
-      <table class="exp-table">
+    <div class="card"><h3>Experience (Chronological) <span class="badge">${t.experience.length}</span>
+      ${issues?'<span style="color:#f90;font-size:11px;margin-left:8px">⚠ Yellow rows need date correction</span>':''}</h3>
+      <table class="etable">
         <thead><tr>
-          <th style="width:14%">From</th><th style="width:14%">To (blank = Till date)</th>
-          <th style="width:20%">Designation</th><th style="width:28%">College</th>
-          <th style="width:18%">Department</th><th style="width:6%"></th>
+          <th style="width:18%">From</th><th style="width:16%">To (blank=Till date)</th>
+          <th style="width:18%">Designation</th><th style="width:30%">College</th>
+          <th style="width:14%">Department</th><th style="width:4%"></th>
         </tr></thead>
         <tbody>${expRows}</tbody>
       </table>
-      <button class="add-exp-btn" onclick="addExp()">+ Add Row</button>
+      <button class="add-exp" onclick="addE()">+ Add Row</button>
     </div>
 
-    <div class="form-card">
-      <h3>Appointment & Contact</h3>
-      <div class="grid-3" style="margin-bottom:10px">
-        <div class="field"><label>Nature of Appointment</label>
+    <div class="card"><h3>Appointment & Contact</h3>
+      <div class="g3" style="margin-bottom:10px">
+        <div class="f"><label>Nature of Appointment</label>
           <select onchange="upd('appointment',this.value)">
             <option ${t.appointment==='Regular'?'selected':''}>Regular</option>
             <option ${t.appointment==='Contractual'?'selected':''}>Contractual</option>
             <option ${t.appointment==='Deputation'?'selected':''}>Deputation</option>
           </select></div>
-        <div class="field"><label>Telephone No.</label>
-          <input type="text" value="${esc(t.phone)}" oninput="upd('phone',this.value)"></div>
-        <div class="field"><label>Mobile No.</label>
-          <input type="text" value="${esc(t.mobile)}" oninput="upd('mobile',this.value)"></div>
+        <div class="f"><label>Telephone No.</label><input type="text" value="${esc(t.phone)}" oninput="upd('phone',this.value)"></div>
+        <div class="f"><label>Mobile No.</label><input type="text" value="${esc(t.mobile)}" oninput="upd('mobile',this.value)"></div>
       </div>
-      <div class="grid-2">
-        <div class="field"><label>Local Residential Address</label>
-          <textarea oninput="upd('localAddr',this.value)">${esc(t.localAddr)}</textarea></div>
-        <div class="field"><label>Permanent Address</label>
-          <textarea oninput="upd('permAddr',this.value)">${esc(t.permAddr)}</textarea></div>
+      <div class="g2">
+        <div class="f"><label>Local Residential Address</label><textarea oninput="upd('localAddr',this.value)">${esc(t.localAddr)}</textarea></div>
+        <div class="f"><label>Permanent Address</label><textarea oninput="upd('permAddr',this.value)">${esc(t.permAddr)}</textarea></div>
       </div>
     </div>
 
-    <div class="form-card">
-      <h3>Photograph</h3>
+    <div class="card"><h3>Photograph</h3>
       <div style="display:flex;align-items:center;gap:16px">
-        <div class="photo-box" onclick="document.getElementById('pi_${currentId}').click()">
-          ${t.photo?`<img src="${t.photo}" alt="Photo">`:'<span>Click to<br>upload photo</span>'}
+        <div class="photo-box" onclick="document.getElementById('pi_${cid}').click()">
+          ${t.photo?`<img src="${t.photo}" alt="Photo">`:'<span>Click to<br>upload</span>'}
         </div>
         <div style="font-size:11px;color:#666">
           <p>Passport size photograph</p>
-          <p style="margin-top:6px;color:#c00">Attestation by Principal<br>on physical copy only</p>
+          <p style="margin-top:6px;color:#c00">Physical attestation by<br>Principal on printed copy</p>
         </div>
-        <input type="file" id="pi_${currentId}" accept="image/*" style="display:none" onchange="uploadPhoto(this)">
+        <input type="file" id="pi_${cid}" accept="image/*" style="display:none" onchange="uploadP(this)">
       </div>
     </div>
 
-    <div class="action-bar no-print">
-      <button class="btn-print" onclick="printOne('${currentId}')">🖨 Print This Teacher</button>
-      <button class="btn-print" style="background:#7a4a00" onclick="printAll()">🖨 Print All (${teachers.length})</button>
+    <div class="abar no-print">
+      <button class="bp" onclick="printOne('${cid}')">🖨 Print This Teacher</button>
+      <button class="bp" style="background:#7a4a00" onclick="printAll()">🖨 Print All (${teachers.length})</button>
     </div>`;
 }
 
 function esc(s){ return (s||'').toString().replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-function upd(f,v){ const t=getT(currentId);if(!t)return;t[f]=v;save();if(f==='name'||f==='code')renderList(); }
-function updExp(i,f,v){ const t=getT(currentId);if(!t)return;t.experience[i][f]=v;save(); }
-function addExp(){ const t=getT(currentId);if(!t)return;t.experience.push({from:'',to:'',designation:'',college:'',dept:''});save();renderForm(); }
-function rmExp(i){ const t=getT(currentId);if(!t||t.experience.length<=1)return;t.experience.splice(i,1);save();renderForm(); }
-function uploadPhoto(input){ const t=getT(currentId);if(!t||!input.files[0])return;const r=new FileReader();r.onload=e=>{t.photo=e.target.result;save();renderForm();};r.readAsDataURL(input.files[0]); }
+function upd(f,v){ const t=getT(cid);if(!t)return;t[f]=v;save();if(f==='name'||f==='code')renderList(); }
+function ue(i,f,v){ const t=getT(cid);if(!t)return;t.experience[i][f]=v;if(f==='from'||f==='to')t.experience[i]._warn=false;save(); }
+function addE(){ const t=getT(cid);if(!t)return;t.experience.push({from:'',to:'',designation:'',college:'',dept:'',rawDur:'',_warn:false});save();renderForm(); }
+function rmE(i){ const t=getT(cid);if(!t||t.experience.length<=1)return;t.experience.splice(i,1);save();renderForm(); }
+function uploadP(inp){ const t=getT(cid);if(!t||!inp.files[0])return;const r=new FileReader();r.onload=e=>{t.photo=e.target.result;save();renderForm();};r.readAsDataURL(inp.files[0]); }
 
-// ── PRINT ─────────────────────────────────────────────────────
-function fmtDate(d){
+// ══ PRINT ═════════════════════════════════════════════════════
+function fd(d){
   if(!d)return'';
   const dt=new Date(d);
   if(isNaN(dt))return d;
   return dt.toLocaleDateString('en-IN',{day:'2-digit',month:'2-digit',year:'numeric'});
 }
 
-function buildPage(t,sno) {
+function buildPage(t, sno){
   const ug=[t.ugDeg,t.ugUniv,t.ugYear].filter(Boolean).join(', ');
-  const pg=[t.pgDeg+(t.pgSubject?' ('+t.pgSubject+')':''),t.pgUniv,t.pgYear].filter(Boolean).join(', ');
-  const expRows=t.experience.map(e=>`<tr>
-    <td>${fmtDate(e.from)} to ${e.to?fmtDate(e.to):'Till date'}</td>
-    <td>${e.designation||''}</td>
-    <td>${e.college||''}</td>
-    <td>${e.dept||''}</td>
+  const pg=[t.pgDeg+(t.pgSubject?` (${t.pgSubject})`:''),t.pgUniv,t.pgYear].filter(Boolean).join(', ');
+  const expR=t.experience.map(e=>`<tr>
+    <td>${fd(e.from)||e.rawDur||'—'} to ${e.to?fd(e.to):'Till date'}</td>
+    <td>${e.designation||''}</td><td>${e.college||''}</td><td>${e.dept||''}</td>
   </tr>`).join('');
   const photo=t.photo
-    ?`<img src="${t.photo}" class="photo-print" alt="Photo">`
-    :`<div class="photo-placeholder">Affix Photograph<br>(Attested by<br>Principal)</div>`;
-  return `<div class="print-wrap" style="page-break-after:always;font-family:Arial,sans-serif">
-    <div class="p-title">ANNEXURE-I</div>
-    <div class="p-inst">PROFORMA TO FURNISH THE DETAILS OF TEACHING STAFF</div>
-    <table class="p-table">
+    ?`<img src="${t.photo}" class="pp" alt="Photo">`
+    :`<div class="pph">Affix Photo<br>(Attested by<br>Principal)</div>`;
+  return `<div class="pw" style="page-break-after:always;font-family:Arial,sans-serif">
+    <div class="pt">ANNEXURE-I</div>
+    <div class="pi">PROFORMA TO FURNISH THE DETAILS OF TEACHING STAFF</div>
+    <table class="ptb">
       <thead><tr>
         <th style="width:3%">S.No.</th>
         <th style="width:12%">Name of the Teacher &amp; Teacher Code</th>
-        <th style="width:9%">Father's Name</th>
+        <th style="width:8%">Father's Name</th>
         <th style="width:6%">Date of Birth</th>
         <th style="width:10%">UG Qualification (University &amp; year)</th>
         <th style="width:10%">PG Qualification with subject (University &amp; year)</th>
-        <th style="width:20%">Date-wise Experience (Chronological)</th>
-        <th style="width:7%">Nature of Appointment</th>
-        <th style="width:10%">Local Residential Address</th>
+        <th style="width:21%">Date-wise Experience (Chronological)</th>
+        <th style="width:6%">Nature of Appointment</th>
+        <th style="width:9%">Local Residential Address</th>
         <th style="width:7%">Permanent Address</th>
-        <th style="width:6%">Tel. &amp; Mobile</th>
+        <th style="width:6%">Tel. &amp; Mobile No.</th>
         <th style="width:5%">Photo (Attested)</th>
         <th style="width:5%">Teacher Signature</th>
         <th style="width:5%">Visitor Verification</th>
       </tr></thead>
       <tbody><tr>
         <td style="text-align:center">${sno}</td>
-        <td><strong>${t.name||'—'}</strong><br><span style="font-size:7.5pt;color:#444">Code: ${t.code||'—'}</span></td>
-        <td>${t.fatherName||'—'}</td>
-        <td style="font-size:7.5pt">${fmtDate(t.dob)||'—'}</td>
+        <td><strong>${t.name||'—'}</strong><br><span style="font-size:7.5pt;color:#444">${t.code||'—'}</span></td>
+        <td style="font-size:8pt">${t.fatherName||'—'}</td>
+        <td style="font-size:7.5pt">${fd(t.dob)||'—'}</td>
         <td style="font-size:7.5pt">${ug||'—'}</td>
         <td style="font-size:7.5pt">${pg||'—'}</td>
-        <td><table class="exp-sub">
+        <td><table class="esub">
           <tr><th>Duration</th><th>Designation</th><th>College</th><th>Dept</th></tr>
-          ${expRows||'<tr><td colspan="4">—</td></tr>'}
+          ${expR||'<tr><td colspan="4">—</td></tr>'}
         </table></td>
         <td style="text-align:center;font-size:7.5pt">${t.appointment||'—'}</td>
         <td style="font-size:7.5pt">${(t.localAddr||'—').replace(/\n/g,'<br>')}</td>
@@ -588,10 +615,10 @@ function buildPage(t,sno) {
         <td><div class="sig-box">Visitor sign</div></td>
       </tr></tbody>
     </table>
-    <div style="margin-top:8px;font-size:7.5pt"><strong>Signature of Principal with date:</strong> ___________________________</div>
+    <div style="margin-top:8px;font-size:7.5pt"><strong>Signature of Principal with date:</strong> _______________________</div>
     <div style="margin-top:8px;font-size:7pt;color:#444;border-top:1px solid #ccc;padding-top:5px">
-      <strong>Note:</strong> 1. Attach certified copies of UG/PG Degree, Registration Certificate, Experience Certificates &amp; Relieving Order with self-certified Affidavit.
-      2. Teacher shall sign in presence of NCISM visitors. 3. Duly signed proforma to be uploaded in visitor's report.
+      <strong>Note:</strong> 1. Attach certified copies of UG/PG Degree, Registration Certificate, Experience Certificates &amp; Relieving Order with Affidavit.
+      2. Teacher shall sign in presence of NCISM visitors. 3. Signed proforma to be uploaded in visitor's report.
     </div>
   </div>`;
 }
@@ -599,20 +626,20 @@ function buildPage(t,sno) {
 function printOne(id){
   const t=getT(id);if(!t)return;
   const sno=teachers.findIndex(x=>x.id===id)+1;
-  document.getElementById('printArea').innerHTML=buildPage(t,sno);
+  document.getElementById('pArea').innerHTML=buildPage(t,sno);
   window.print();
-  document.getElementById('printArea').innerHTML='';
+  document.getElementById('pArea').innerHTML='';
 }
 
 function printAll(){
   if(!teachers.length){toast('No teachers to print.');return;}
-  document.getElementById('printArea').innerHTML=teachers.map((t,i)=>buildPage(t,i+1)).join('');
+  document.getElementById('pArea').innerHTML=teachers.map((t,i)=>buildPage(t,i+1)).join('');
   window.print();
-  document.getElementById('printArea').innerHTML='';
+  document.getElementById('pArea').innerHTML='';
 }
 
 renderList();
-if(teachers.length)loadTeacher(teachers[0].id);
+if(teachers.length)loadT(teachers[0].id);
 </script>
 </body>
 </html>
